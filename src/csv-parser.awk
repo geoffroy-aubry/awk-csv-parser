@@ -16,7 +16,7 @@ function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
             return ++pos
         } else if (c == quote) {
             if (! quoted) {
-                csv_error="Missing opening quote before '" field "'!"
+                csv_error="Missing opening quote before '" field "' in following record: '" record "'"
                 return -1
             } else if (prev_char_is_quote) {
                 prev_char_is_quote=0
@@ -29,7 +29,7 @@ function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
                 }
             }
         } else if (prev_char_is_quote) {
-            csv_error="Missing separator after '" field "'!"
+            csv_error="Missing separator after '" field "' in following record: '" record "'"
             return -2
         } else {
             field = field c
@@ -56,7 +56,7 @@ function csv_parse_record (record, separator, quote, csv) {
     while (pos <= length(record)) {
         pos = csv_parse_field(record, pos, separator, quote, csv, num_fields)
         if (pos < 0) {
-            print "[CSV ERROR: " pos "] " csv_error
+            print "\033[0;31m[CSV ERROR: " pos "] \033[1;31m" csv_error "\033[0m"
             return pos
         }
         num_fields++
