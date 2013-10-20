@@ -1,0 +1,22 @@
+{
+	"name" : "geoffroy-aubry/awk-csv-parser",
+	"description" : "AWK code to parse CSV files, with possibly embedded commas and quotes.",
+	"type" : "library",
+	"authors" : [{
+			"name" : "Geoffroy Aubry",
+			"email" : "geoffroy.aubry@free.fr"
+		}
+	],
+	"keywords" : [
+		"csv parser",
+		"awk",
+		"bash"
+	],
+	"license" : [
+		"LGPL-3.0+"
+	],
+	"bin" : [
+		"src/awk-csv-parser.sh",
+		"src/csv-parser.awk"
+	]
+}
