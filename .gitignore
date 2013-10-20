@@ -1,0 +1,9 @@
+/.settings
+/.buildpath
+/.project
+/build/
+*~
+/vendor/
+composer.phar
+/cache.properties
+/.twgit*
