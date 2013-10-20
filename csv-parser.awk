@@ -1,6 +1,5 @@
 
 function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
-    #print "field {" record, pos, separator, quote, num_fields "}"
     if (substr(record, pos, 1) == quote) {
         quoted=1;
         pos++;
@@ -14,7 +13,6 @@ function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
         c = substr(record, pos, 1);
         if (c == separator && (! quoted || prev_char_is_quote)) {
             csv[num_fields] = field;
-            #print "field > " field "|" num_fields "<"
             return ++pos;
         } else if (c == quote) {
             if (! quoted) {
@@ -40,11 +38,10 @@ function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
     }
 
     if (quoted) {
-        csv_error="Missing closing quote after '" field "'!";
+        csv_error="Missing closing quote after '" field "' in following record: '" record "'";
         return -3;
     } else {
         csv[num_fields] = field;
-        #print "field > " field "|" num_fields "<"
         return pos;
     }
 }
@@ -59,12 +56,26 @@ function csv_parse_record (record, separator, quote, csv) {
     while (pos <= length(record)) {
         pos = csv_parse_field(record, pos, separator, quote, csv, num_fields);
         if (pos < 0) {
-            #print "ERROR [" pos "] " csv_error;
-            return;
+            print "[CSV ERROR: " pos "] " csv_error;
+            return pos;
         }
-        #print "record > num_fields=" num_fields ", pos=" pos;
         num_fields++;
     }
 
+    if (substr(record, length(record), 1) == separator) {
+        csv[num_fields++]=""
+    }
+
     return num_fields;
+}
+
+function csv_parse_and_display (record, separator, quote, output_fs) {
+    num_fields=csv_parse_record($0, separator, quote, csv)
+    if (num_fields >= 0) {
+        line=""
+        for (i=0; i<num_fields; i++) {
+            line=line csv[i] output_fs
+        }
+        print line
+    }
 }
