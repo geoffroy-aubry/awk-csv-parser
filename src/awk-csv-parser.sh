@@ -14,6 +14,7 @@ ENCLOSURE='"'
 SEPARATOR=','
 OUTPUT_SEPARATOR='|'
 DISPLAY_HELP=0
+IN='-'
 
 function getOpts () {
     local i
@@ -39,12 +40,14 @@ function getOpts () {
             --output-separator=*) OUTPUT_SEPARATOR=${i#*=} ;;
             --help)               DISPLAY_HELP=1 ;;
 
+            # CSVs to parse:
+            *) [[ $IN == '-' ]] && IN="$i" || IN="$IN $i" ;;
         esac
     done
 }
 
 getOpts "$@"
-awk \
+cat $IN | awk \
     -f $ROOT_DIR/src/csv-parser.awk \
     -v separator=$SEPARATOR \
     -v enclosure=$ENCLOSURE \
