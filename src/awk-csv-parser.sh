@@ -10,15 +10,43 @@ set -o nounset
 set -o pipefail
 
 ROOT_DIR=$(cd "$(dirname "$(readlink -f "$BASH_SOURCE")")/.." && pwd)
+ENCLOSURE='"'
+SEPARATOR=','
+OUTPUT_SEPARATOR='|'
+DISPLAY_HELP=0
 
-separator=${1:-','}
-quote=${2:-'"'}
-output_fs=${3:-'|'}
-awk_script=$ROOT_DIR/src/csv-parser.awk
+function getOpts () {
+    local i
+    local long_option=''
 
+    for i in "$@"; do
+        # Converting short option into long option:
+        if [ ! -z "$long_option" ]; then
+            i="$long_option=$i"
+            long_option=''
+        fi
+
+        case $i in
+            # Short options:
+            -e) long_option="--enclosure" ;;
+            -s) long_option="--separator" ;;
+            -o) long_option="--output-separator" ;;
+            -h) DISPLAY_HELP=1 ;;
+
+            # Long options:
+            --enclosure=*)        ENCLOSURE=${i#*=} ;;
+            --separator=*)        SEPARATOR=${i#*=} ;;
+            --output-separator=*) OUTPUT_SEPARATOR=${i#*=} ;;
+            --help)               DISPLAY_HELP=1 ;;
+
+        esac
+    done
+}
+
+getOpts "$@"
 awk \
-    -f $awk_script \
-    -v separator=$separator \
-    -v quote=$quote \
-    -v output_fs=$output_fs \
-    --source '{csv_parse_and_display($0, separator, quote, output_fs)}'
+    -f $ROOT_DIR/src/csv-parser.awk \
+    -v separator=$SEPARATOR \
+    -v enclosure=$ENCLOSURE \
+    -v output_separator=$OUTPUT_SEPARATOR \
+    --source '{csv_parse_and_display($0, separator, enclosure, output_separator)}'
