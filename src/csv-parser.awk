@@ -77,7 +77,7 @@ function csv_parse_record (record, separator, quote, csv) {
     while (pos <= length(record)) {
         pos = csv_parse_field(record, pos, separator, quote, csv, num_fields)
         if (pos < 0) {
-            print "\033[0;31m[CSV ERROR: " pos "] \033[1;31m" csv_error "\033[0m"
+            print "\033[0;31m[CSV ERROR: " (-pos) "] \033[1;31m" csv_error "\033[0m"
             return pos
         }
         num_fields++
