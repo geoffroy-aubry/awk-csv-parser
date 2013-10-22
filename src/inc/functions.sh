@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+##
+# Parse command options.
+#
 function getOpts () {
     local i
     local long_option=''
@@ -30,6 +33,9 @@ function getOpts () {
     done
 }
 
+##
+# Help.
+#
 function displayHelp () {
     local normal='\033[0;37m'
     local title='\033[1;37m'

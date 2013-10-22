@@ -1,4 +1,15 @@
-
+##
+# Extract next field on specified CSV record.
+#
+# @param string record  CSV record to parse.
+# @param int pos        Position at which search start.
+# @param char separator Field separator.
+# @param char quote     Field enclosure.
+# @param array csv      Array of found fields in which store the next field (passed by reference).
+# @param int num_fields Number of fieds already found.
+# @return int           Last index of parsed character in CSV record,
+#                       or negative error code (error message in csv_error).
+#
 function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
     if (substr(record, pos, 1) == quote) {
         quoted=1
@@ -46,6 +57,14 @@ function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
     }
 }
 
+##
+# Parse CSV record.
+#
+# @param string record  CSV record to parse.
+# @param char separator Field separator.
+# @param char quote     Field enclosure.
+# @param array csv      Empty array in which store all fields (passed by reference).
+#
 function csv_parse_record (record, separator, quote, csv) {
     if (length(record) == 0) {
         return
@@ -69,6 +88,14 @@ function csv_parse_record (record, separator, quote, csv) {
     return num_fields
 }
 
+##
+# Parse CSV record, then display it without quote and replacing specified separator by output_fs.
+#
+# @param string record    CSV record to parse.
+# @param char separator   Field separator.
+# @param char quote       Field enclosure.
+# @param string output_fs Output field enclosure.
+#
 function csv_parse_and_display (record, separator, quote, output_fs) {
     num_fields=csv_parse_record($0, separator, quote, csv)
     if (num_fields >= 0) {
