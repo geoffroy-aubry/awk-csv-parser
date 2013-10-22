@@ -18,8 +18,7 @@ status=0
 for tests_set in ok invalid; do
     echo -e "\033[1;37mTesting $RESOURCES_DIR/$tests_set.csv:\033[0m"
     tmp_path="$(mktemp /tmp/awk-csv-parser-XXXXXXXXXX)";
-    cat $RESOURCES_DIR/$tests_set.csv \
-        | $SRC_DIR/awk-csv-parser.sh ',' '"' '|' \
+    $SRC_DIR/awk-csv-parser.sh -s ',' -e '"' -o '|' $RESOURCES_DIR/$tests_set.csv \
         | sed -r 's:(\033|\x1B)\[[0-9;]*[mK]::ig' \
         > $tmp_path
     diff --report-identical-files $tmp_path $RESOURCES_DIR/$tests_set-expected.txt
