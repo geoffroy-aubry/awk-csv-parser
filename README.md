@@ -184,6 +184,58 @@ CXR ⇒ Christmas Island
 CCK ⇒ Cocos (Keeling) Islands
 ```
 
+##### 4. Technical example
+
+Content of `tests/resources/ok.csv`:
+
+```csv
+,,
+a, b,c , d ,e e
+"","a","a,",",a",",,"
+"a""b","""","c"""""
+```
+
+Test:
+
+```bash
+$ awk-csv-parser.sh tests/resources/ok.csv
+```
+
+Result:
+
+```
+|| |
+a| b|c | d |e e|
+|a|a,|,a|,,|
+a"b|"|c""|
+```
+
+##### 4. Errors
+
+Content of `tests/resources/invalid.csv`:
+
+```csv
+"
+"a,
+a"
+"a"b
+```
+
+Test:
+
+```bash
+$ awk-csv-parser.sh tests/resources/invalid.csv
+```
+
+Result:
+
+```
+[CSV ERROR: 3] Missing closing quote after '' in following record: '"'
+[CSV ERROR: 3] Missing closing quote after 'a,' in following record: '"a,'
+[CSV ERROR: 1] Missing opening quote before 'a' in following record: 'a"'
+[CSV ERROR: 2] Missing separator after 'a' in following record: '"a"b'
+```
+
 ## Installation
 
 1. Move to the directory where you wish to store the source.
