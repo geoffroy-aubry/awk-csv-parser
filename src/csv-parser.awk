@@ -64,6 +64,8 @@ function csv_parse_field (record, pos, separator, quote, csv, num_fields) {
 # @param char separator Field separator.
 # @param char quote     Field enclosure.
 # @param array csv      Empty array in which store all fields (passed by reference).
+# @return int           Number of fields parsed in CSV record,
+#                       or negative error code (error message in csv_error).
 #
 function csv_parse_record (record, separator, quote, csv) {
     if (length(record) == 0) {
@@ -95,6 +97,7 @@ function csv_parse_record (record, separator, quote, csv) {
 # @param char separator   Field separator.
 # @param char quote       Field enclosure.
 # @param string output_fs Output field enclosure.
+# @return int             Return 0 if no error, else return positive error code.
 #
 function csv_parse_and_display (record, separator, quote, output_fs) {
     num_fields=csv_parse_record($0, separator, quote, csv)
@@ -104,5 +107,8 @@ function csv_parse_and_display (record, separator, quote, output_fs) {
             line=line csv[i] output_fs
         }
         print line
+        return 0
+    } else {    # Return error code:
+        return -num_fields
     }
 }
