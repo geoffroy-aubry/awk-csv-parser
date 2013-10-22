@@ -56,7 +56,7 @@ $tab$opt-e $param<character>$normal, $opt--enclosure$normal=$param<character>
 $tab${tab}Set the CSV field enclosure. One character only, '\"' (double quote) by default.
 $tab
 $tab$opt-o $param<string>$normal, $opt--output-separator$normal=$param<string>
-$tab${tab}Set the output field enclosure. Multiple characters allowed, '|' (pipe) by default.
+$tab${tab}Set the output field separator. Multiple characters allowed, '|' (pipe) by default.
 $tab
 $tab$opt-s $param<character>$normal, $opt--separator$normal=$param<character>
 $tab${tab}Set the CSV field separator. One character only, ',' (comma) by default.
