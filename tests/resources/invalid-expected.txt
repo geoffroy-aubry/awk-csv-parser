@@ -1,0 +1,4 @@
+[CSV ERROR: 3] Missing closing quote after '' in following record: '"'
+[CSV ERROR: 3] Missing closing quote after 'a,' in following record: '"a,'
+[CSV ERROR: 1] Missing opening quote before 'a' in following record: 'a"'
+[CSV ERROR: 2] Missing separator after 'a' in following record: '"a"b'

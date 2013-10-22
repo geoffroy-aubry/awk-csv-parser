@@ -1,0 +1,10 @@
+# See: http://about.travis-ci.org/docs/user/build-configuration/
+
+before_install:
+ - sudo apt-get install -qq gawk
+
+script: tests/all-tests.sh
+
+notifications:
+  on_success: always
+  on_failure: always
