@@ -1,5 +1,26 @@
 #!/usr/bin/env bash
 
+##
+# Copyright © 2013 Geoffroy Aubry <geoffroy.aubry@free.fr>
+#
+# This file is part of awk-csv-parser.
+#
+# awk-csv-parser is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# awk-csv-parser is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with awk-csv-parser.  If not, see <http://www.gnu.org/licenses/>
+#
+
+
+
 # Treat unset variables and parameters other than the special parameters ‘@’ or ‘*’ as an error
 # when performing parameter expansion. An error message will be written to the standard error,
 # and a non-interactive shell will exit.
