@@ -90,8 +90,8 @@ ${tab}Keep only first column, using multiple UTF-8 characters output separator:
 $tab$tab${cmd}$(basename $0) $opt-o $param'⇒⇒' resources/iso_3166-1.csv$cmd | awk -F '⇒⇒' '{print \$1}'
 $tab
 ${tab}You can directly call the Awk script:
-$tab$tab${cmd}awk -f csv-parser.awk -v separator=',' -v enclosure='\"' --source '{
-$tab$tab${cmd}    csv_parse_record($0, separator, enclosure, csv)
+$tab$tab${cmd}awk -f ${param}csv-parser.awk$cmd -v separator=',' -v enclosure='\"' --source '{
+$tab$tab${cmd}    csv_parse_record(\$0, separator, enclosure, csv)
 $tab$tab${cmd}    print csv[2] \" ⇒ \" csv[0]
 $tab$tab${cmd}}' resources/iso_3166-1.csv
 "
