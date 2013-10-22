@@ -5,6 +5,20 @@
 
 AWK and Bash code to easily parse CSV files, with possibly embedded commas and quotes.
 
+## Table of Contents
+
+  * [Features](#features)
+    * [Known limitations](#known-limitations)
+    * [Links](#links)
+  * [Requirements](#requirements)
+  * [Usage](#usage)
+  * [Examples](#examples)
+  * [Installation](#installation)
+  * [Copyrights & licensing](#copyrights--licensing)
+  * [Change log](#change-log)
+  * [Continuous integration](#continuous-integration)
+  * [Git branching model](#git-branching-model)
+
 ## Features
 
   * Parse CSV files with only Bash and Awk.
@@ -210,7 +224,7 @@ a| b|c | d |e e|
 a"b|"|c""|
 ```
 
-##### 4. Errors
+##### 5. Errors
 
 Content of `tests/resources/invalid.csv`:
 
