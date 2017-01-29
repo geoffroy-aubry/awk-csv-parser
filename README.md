@@ -252,27 +252,47 @@ Result:
 
 ## Installation
 
+### Debian/Ubuntu
+
 1. Move to the directory where you wish to store the source.
 
 2. Clone the repository:
-```bash
-$ git clone https://github.com/geoffroy-aubry/awk-csv-parser.git
-```
+
+  ```bash
+  $ git clone https://github.com/geoffroy-aubry/awk-csv-parser.git
+  ```
 
 3. You should be on `stable` branch. If not, switch your clone to that branch:
-```bash
-$ cd awk-csv-parser && git checkout stable
-```
+
+  ```bash
+  $ cd awk-csv-parser && git checkout stable
+  ```
 
 4. You can create a symlink to `awk-csv-parser.sh`:
-```bash
-$ sudo ln -s /path/to/src/awk-csv-parser.sh /usr/local/bin/awk-csv-parser
-```
+
+  ```bash
+  $ sudo ln -s /path/to/src/awk-csv-parser.sh /usr/local/bin/awk-csv-parser
+  ```
 
 5. It's ready for use:
+
+  ```bash
+  $ awk-csv-parser
+  ```
+
+### OS X
+
+As both `readlink` and `sed` Mac OS X versions are based on BSD with small differences with the GNU version, you need to install GNU utilities:
+
 ```bash
-$ awk-csv-parser
+$ brew install coreutils gnu-sed [--with-default-names]
 ```
+
+With `--with-default-names` option, GNU utilities replace those of OS X.
+Else GNU utilities are prefixed with a `g` and you have to edit the scripts `src/awk-csv-parser.sh` and `tests/all-tests.sh` 
+to replace both `readlink` and `sed` with `greadlink` and `gsed` respectively. 
+
+Then follow Debian/Ubuntu installation process.
 
 ## Copyrights & licensing
 
