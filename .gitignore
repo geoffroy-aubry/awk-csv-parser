@@ -7,3 +7,4 @@
 composer.phar
 /cache.properties
 /.twgit*
+/.idea
