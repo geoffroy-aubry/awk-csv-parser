@@ -38,12 +38,12 @@ OUTPUT_SEPARATOR='|'
 IN='-'
 
 # Includes:
-. $ROOT_DIR/src/inc/functions.sh
+. "$ROOT_DIR/src/inc/functions.sh"
 
 # Main:
 getOpts "$@"
 cat $IN | awk \
-    -f $ROOT_DIR/src/csv-parser.awk \
+    -f "$ROOT_DIR/src/csv-parser.awk" \
     -v separator=$SEPARATOR \
     -v enclosure=$ENCLOSURE \
     -v output_separator=$OUTPUT_SEPARATOR \
