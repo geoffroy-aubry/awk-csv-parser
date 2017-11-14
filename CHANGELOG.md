@@ -1,6 +1,12 @@
 Change log
 ==========
 
+## Version 1.0.2 (2017-11-14)
+
+FIX:
+
+  - [#3](https://github.com/geoffroy-aubry/awk-csv-parser/pull/3): Fix error when path to script contains spaces. Thanks to [agraboso](https://github.com/agraboso)!
+
 ## Version 1.0.1 (2017-01-29)
 
 Doc:
