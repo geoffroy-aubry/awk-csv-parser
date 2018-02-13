@@ -46,5 +46,5 @@ cat $IN | awk \
     -f "$ROOT_DIR/src/csv-parser.awk" \
     -v separator=$SEPARATOR \
     -v enclosure=$ENCLOSURE \
-    -v output_separator=$OUTPUT_SEPARATOR \
+    -v output_separator="$OUTPUT_SEPARATOR" \
     --source '{csv_parse_and_display($0, separator, enclosure, output_separator)}'
